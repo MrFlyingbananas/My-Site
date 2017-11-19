@@ -111,10 +111,12 @@
     </section>
 
     <!-- Download Section -->
-    <section id="projects" class="content-section text-center">
-        <div class="download-section">
+    <section class="content-section text-center">
+        <div id="projects" class="download-section">
             <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
+				<h2>A few of my GitHub Projects</h2>
+				<div id="github-projects"></div>
+                <!--<div class="col-lg-8 col-lg-offset-2">
                     <h2>Projects</h2>
                     <h3>Gladiator - An Arcade Survival</h3>
                     <p>Gladiator is a project I made in colaberation with my artistic friend Tristan, without whom, this project
@@ -129,7 +131,7 @@
                     <img class="img-responsive" src="img/gladiatorArena2.png" alt = "Gladiator Arena">
                     <p><br><br>Gladiator Game Over Screen</p>
                     <img class="img-responsive" src="img/gladiatorGameOver.png" alt = "Gladiator Game Over">
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -139,7 +141,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Contact Me</h2>
-                <p>Feel free to <a href="mailto:nick.isom.211@gmail.comNick.Isom.211@gmail.com">email</a> me if you'd like, or look around on my <a href="https://github.com/MrFlyingbananas">GitHub</a></p>
+                <p>Feel free to <a href="mailto:nick.isom.211@gmail.comNick.Isom.211@gmail.com">email</a> me if you'd like, or look around on my <a href="https://github.com/MrFlyingbananas">GitHub</a> for more <projects></projects></p>
                 </p>
                 <ul class="list-inline banner-social-buttons" style="padding-bottom: 300px;">
                     <li>
@@ -166,6 +168,15 @@
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
 
+	<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+	<script src="js/github.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		var $jq2 = jQuery.noConflict();
+		$jq2(function() {
+		    $jq2("#github-projects").loadRepositories("MrFlyingbananas");
+	    });
+	</script>
 </body>
 
 </html>
