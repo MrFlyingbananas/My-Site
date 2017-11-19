@@ -9,12 +9,13 @@ jQuery.fn.loadRepositories = function(username) {
 	$jq2.githubUser(username, function(data) {
 		var repos = data.data; // JSON Parsing
 		//sortByName(repos);
+		console.log(repos);
 		var list = $('<dl/>');
 		target.empty().append(list);
 		stop = repos.length - 6;
 		if(stop < 0)
 			stop = 0;
-		for(i =  repos.length - 1; i > stop; i--){
+		for(i =  repos.length - 1; i >= stop; i--){
 			repo = repos[i];
 			if (repo.name != (username.toLowerCase()+'.github.com')) {
 				list.append('<dt><a href="'+ (repo.homepage?repo.homepage:repo.html_url) +'">' + repo.name.trim() + '</a> <em>'+(repo.language?('('+repo.language+')'):'')+'</em></dt>');
