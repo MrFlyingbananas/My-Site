@@ -6,14 +6,14 @@
  */
 var canvas;
 var inc = .1;
-var scl = 50;
+var scl = 75;
 var cols, rows;
 var zoff = 0;
 var particles = [];
 var flowField = [];
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
-  canvas.parent('sketch-holder');
+  canvas.parent('\sketch-holder');
   cols = floor(width/scl);
   rows = floor(height/scl);
   for(var i = 0; i < 400; i++){
