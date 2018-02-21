@@ -8,7 +8,7 @@ var flowField = [];
 let particleNum = 60;
 let fadeTime = 0;
 function setup() {
-	canvas = createCanvas(windowWidth, windowHeight);
+	canvas = createCanvas(window.innerWidth, window.innerHeight + 60);
 	if (windowWidth < 768) {
 		particleNum = 30;
 	}
@@ -18,10 +18,12 @@ function setup() {
 	for (var i = 0; i < particleNum; i++) {
 		particles[i] = new Particle();
 	}
-	background(0);
-	frameRate(18);
-	noLoop();
-	fadeIn();
+	if (fadeTime == 0) {
+		background(0);
+		frameRate(18);
+		noLoop();
+		fadeIn();
+	}
 }
 
 function fadeIn() {
@@ -64,7 +66,7 @@ function draw() {
 window.onresize = windowResized;
 
 function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
+	resizeCanvas(window.innerWidth, window.innerHeight + 60);
 	cols = floor(width / scl);
 	rows = floor(height / scl);
 	for (var i = 0; i < particleNum; i++) {
