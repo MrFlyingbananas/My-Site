@@ -1,2 +1,8 @@
 .idea
 .xml
+/sass/
+/less/
+etag
+github.json
+*.old.*
+/img/
