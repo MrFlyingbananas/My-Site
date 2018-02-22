@@ -5,12 +5,12 @@ var cols, rows;
 var zoff = 0;
 var particles = [];
 var flowField = [];
-let particleNum = 60;
+let particleNum = 300;
 let fadeTime = 0;
 function setup() {
 	canvas = createCanvas(window.innerWidth, window.innerHeight + 60);
 	if (windowWidth < 768) {
-		particleNum = 30;
+		particleNum = 150;
 	}
 	canvas.parent("sketch-holder");
 	cols = floor(width / scl);
@@ -30,9 +30,11 @@ function fadeIn() {
 	fadeTime += 50;
 	if (fadeTime < 2 * 1000) {
 		setTimeout(fadeIn, 50);
-		background(51, 51, 51, 50);
+		background(51, 51, 51, 100);
 	} else {
 		background(51);
+		stroke(0, 8);
+		strokeWeight(1);
 		loop();
 	}
 }
@@ -53,8 +55,6 @@ function draw() {
 	}
 	zoff += 0.005;
 
-	stroke(0, 10);
-	strokeWeight(1);
 	for (var i = 0; i < particles.length; i++) {
 		particles[i].follow(flowField);
 		particles[i].update();
