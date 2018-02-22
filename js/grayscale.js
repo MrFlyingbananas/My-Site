@@ -33,10 +33,13 @@ $(function() {
 	});
 });
 // Closes the Responsive Menu on Menu Item Click
+$("#navBar").collapse("hide");
 $(".navbar-collapse ul li a").click(function() {
-	$(this)
-		.closest(".collapse")
-		.collapse("toggle");
+	if (window.innerWidth <= 767) {
+		$(this)
+			.closest(".collapse")
+			.collapse("toggle");
+	}
 });
 
 // Google Maps Scripts
