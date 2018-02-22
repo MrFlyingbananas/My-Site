@@ -1,4 +1,4 @@
-jQuery.githubUser = function(username, callback) {
+jQuery.githubUser = function(callback) {
 	jQuery.getJSON("github.json", callback);
 };
 
@@ -8,7 +8,7 @@ jQuery.fn.loadRepositories = function(username) {
 	);
 
 	var target = this;
-	$jq2.githubUser(username, function(data) {
+	$jq2.githubUser(function(data) {
 		var repos = data;
 		sortByName(repos);
 		var list = $("<dl/>");
