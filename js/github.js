@@ -1,10 +1,5 @@
 jQuery.githubUser = function(username, callback) {
-	jQuery.getJSON(
-		"https://api.github.com/users/" +
-			username +
-			"/repos?access_token=c397d1db88bb3c9249f5&callback=?",
-		callback
-	);
+	jQuery.getJSON("github.json", callback);
 };
 
 jQuery.fn.loadRepositories = function(username) {
@@ -14,8 +9,7 @@ jQuery.fn.loadRepositories = function(username) {
 
 	var target = this;
 	$jq2.githubUser(username, function(data) {
-		var repos = data.data; // JSON Parsing
-		console.log(repos);
+		var repos = data;
 		sortByName(repos);
 		var list = $("<dl/>");
 		target.empty().append(list);

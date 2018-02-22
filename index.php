@@ -44,7 +44,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse" id="navBar">
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
@@ -167,5 +167,32 @@
 	    });
 	</script>
 </body>
-
 </html>
+<?php
+    $etag = file_get_contents("etag");
+    $url = "https://api.github.com/users/nickis211/repos";
+    $curl = curl_init($url);
+    curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_HEADER  => true,
+        CURLOPT_USERAGENT => 'NickIs211 Site'
+    ));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "If-None-Match: " . "\"" . $etag . "\""
+    ));
+    $res = curl_exec($curl);
+    $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    if($httpcode !== 304){
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+        $body = substr($res, $header_size);
+        file_put_contents("github.json", $body);
+        list($headers, $content) = explode("\r\n\r\n",$res,2);
+        foreach (explode("\r\n",$headers) as $hdr){
+            if(strpos($hdr, "ETag: ") !== false){
+                file_put_contents("etag",rtrim(substr($hdr, 7),"\""));
+            }
+        }
+    }
+            
+    curl_close($curl);
+?>
